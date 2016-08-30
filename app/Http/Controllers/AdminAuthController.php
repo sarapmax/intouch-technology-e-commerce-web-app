@@ -25,7 +25,7 @@ class AdminAuthController extends Controller
 	public function postRegister(Request $request) {
 
 		$this->validate($request, [
-    		'email' => 'required|email|max:255',
+    		'email' => 'required|email|max:255|unique:admins',
     		'password'  =>'required|alphaNum|Between:4,8|Confirmed',
             'password_confirmation'=>'required|alphaNum|Between:4,8',
     		'fullname' => 'required|max:255',

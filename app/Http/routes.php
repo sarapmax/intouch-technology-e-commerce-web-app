@@ -15,13 +15,15 @@
 //     return view('backoffice.category.index');
 // });
 
-Route::get('/backoffice/login', 'AdminAuthController@getLogin');
-Route::post('/backoffice/login', 'AdminAuthController@postLogin');
+Route::get('backoffice/login', 'AdminAuthController@getLogin');
+Route::post('backoffice/login', 'AdminAuthController@postLogin');
 
-Route::get('/backoffice/logout', 'AdminAuthController@getLogout');
+Route::get('backoffice/logout', 'AdminAuthController@getLogout');
 
-Route::get('/backoffice/register', 'AdminAuthController@getRegister');
-Route::post('/backoffice/register', 'AdminAuthController@postRegister');
+Route::get('backoffice/register', 'AdminAuthController@getRegister');
+Route::post('backoffice/register', 'AdminAuthController@postRegister');
 
 
-Route::get('/backoffice/dashboard', 'DashboardController@index');
+Route::get('backoffice/dashboard', 'DashboardController@index');
+
+Route::resource('backoffice/category','CategoryController');

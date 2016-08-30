@@ -37,7 +37,7 @@
 			
 					<!-- Logo -->
 					<div class="logo">
-						<h1><a href="index.html"><i class="fa fa-desktop br-orange"></i> Intouch <span>Technology</span></a></h1>
+						<h1><a href="index.html"><i class="fa fa-home br-orange"></i> Intouch <span>Technology</span></a></h1>
 					</div>
 					
 					<!-- Sidebar navigation starts -->
@@ -52,14 +52,14 @@
 							<h4>Main</h4>
 							<!-- Sidebar links -->
 							<ul class="list-unstyled">
-								<li><a href="index.html" class="active"><i class="fa fa-desktop"></i> Dashboard</a></li>
+								<li><a href="{{ url('backoffice/dashboard') }}" class="active"><i class="fa fa-desktop"></i> Dashboard</a></li>
 							</ul>
 						</div>
 						
 						<div class="side-nav-block">
 							<h4>Menu</h4>
 							<ul class="list-unstyled">
-								<li><a href="0-base.html"><i class="fa fa-tasks"></i> Category</a></li>
+								<li><a href="{{ url('backoffice/category') }}"><i class="fa fa-tasks"></i> Category</a></li>
 								<li><a href="login.html"><i class="fa fa-cubes"></i> Product</a></li>
 								<li><a href="404.html"><i class="fa fa-clone"></i> Order</a></li>
 								<li><a href="grid.html"><i class="fa fa-sticky-note"></i> Report</a></li>
