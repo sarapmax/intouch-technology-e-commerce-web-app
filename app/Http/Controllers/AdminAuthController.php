@@ -10,8 +10,16 @@ use App\Admin;
 
 class AdminAuthController extends Controller
 {
+	public function __construct() {
+		$this->middleware('guest');
+	}
+
 	public function getRegister() {
-		return view('backoffice.register');
+		if (Auth::guard('admin')->check()) {
+			return redirect('backoffice/dashboard');
+		}else {
+			return view('backoffice.register');
+		}
 	}
 
 	public function postRegister(Request $request) {
@@ -31,12 +39,16 @@ class AdminAuthController extends Controller
     		'activated' => $request->input('activated')
     	]);
 
-    	return redirect('backoffice/register')->with('info', 'register successfully!');
+    	return redirect('backoffice/register')->with('success-register', 'Register successfully! wait for activated from another admin(s).');
 
 	}
 
 	public function getLogin() {
-		return view('backoffice.login');
+		if (Auth::guard('admin')->check()) {
+			return redirect('backoffice/dashboard');
+		}else {
+			return view('backoffice.login');
+		}
 	}
 
     public function postLogin(Request $request) {
@@ -52,10 +64,20 @@ class AdminAuthController extends Controller
             'password' =>  $request->input('password'),
         ];
 
-    	if ($auth->attempt($credentials)) {
-             echo "OK";                  
-        } else {
-            echo 'Error';
+    	if ($auth->attempt($credentials, $request->input('remember'))) {
+    		if(Auth::guard('admin')->user()->activated) {
+    			return redirect('backoffice/dashboard');   
+    		}else {
+   				return redirect()->back()->with('error-notactivated', 'You are not activated');
+    		}
+        }else {
+            return redirect()->back()->with('error-login', 'Invalid email or password');
         }
+    }
+
+    public function getLogout() {
+    	auth()->guard('admin')->logout();
+
+    	return redirect('backoffice/login');
     }
 }

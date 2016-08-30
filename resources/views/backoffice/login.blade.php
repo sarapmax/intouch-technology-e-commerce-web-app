@@ -33,7 +33,7 @@
 
 					<!-- Nav tabs -->
 					<ul class="nav nav-tabs nav-justified">
-					  <li class="active"><a href="#login" data-toggle="tab" class="br-orange"><i class="fa fa-sign-in"></i> Login</a></li>
+					  <li class="active"><a href="#login" data-toggle="tab" class="br-orange">Intouch Technology Ecommerce Backoffice <br/><br/><i class="fa fa-sign-in"></i> Login</a></li>
 					</ul>
 
 					<!-- Tab panes -->
@@ -43,6 +43,20 @@
 						<!-- Login form -->
 						
 						<form role="form" method="post" action="{{ url('/backoffice/login') }}">
+							@if (session('error-notactivated'))
+							    <div class="alert alert-danger">
+							    	<center>
+							            <strong>{{session('error-notactivated')}}</strong>
+							        </center>
+							    </div>
+							@endif
+							@if (session('error-login'))
+							    <div class="alert alert-danger">
+							    	<center>
+							            <strong>{{session('error-login')}}</strong>
+							        </center>
+							    </div>
+							@endif
 							<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 	                    		<label for="email" class="control-label">Email</label>
 	                    		<input type="text" name="email" class="form-control" id="email" placeholder="Enter your email">
@@ -52,17 +66,21 @@
 	                		</div>
 							<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
 	                    		<label for="password" class="control-label">Password</label>
-	                    		<input type="password" name="password" class="form-control" id="password" placeholder="Enter your email">
+	                    		<input type="password" name="password" class="form-control" id="password" placeholder="Enter your password">
 			                    @if ($errors->has('password'))
 			                        <span class="help-block">{{ $errors->first('password') }}</span>
 			                    @endif
 	               	 		</div>
 						  	<div class="checkbox">
-                    			<label><input type="checkbox" name="remember"> Remember me</label>
+                    			<label><input type="checkbox" name="remember"> Remember me</label><br/>
                 			</div>
-						  <input type="hidden" name="_token" value="{{ csrf_token() }}">
-						  <button type="submit" class="btn btn-warning btn-sm">Submit</button>
-						  <button type="reset" class="btn btn-default btn-sm">Reset</button>
+						  	<input type="hidden" name="_token" value="{{ csrf_token() }}">
+						  	<button type="submit" class="btn btn-warning btn-sm">Submit</button>
+						  	<button type="reset" class="btn btn-default btn-sm">Reset</button>
+						  	<div class="pull-right">
+                				<a href="{{ url('backoffice/register') }}"><i class="fa fa-edit"> </i> Admin Register</a>
+                			</div>
+                			<div class="clearfix"></div>
 						</form>
 						
 					  </div>

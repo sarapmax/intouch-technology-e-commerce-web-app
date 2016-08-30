@@ -105,7 +105,7 @@
 										{{-- <img src="img/user2.png" alt="" class="img-responsive img-circle"/> --}}
 										
 										<!-- User name -->
-										<i class="fa fa-user"> </i> {{-- {{ Auth::guard('admin')->user()->fullname }}  --}}
+										<i class="fa fa-user"> </i> {{ Auth::guard('admin')->user()->fullname }} 
 										{{-- <span class="label label-danger">5</span>  --}}
 										<i class="fa fa-caret-down"></i> 
 									</a>

@@ -1579,7 +1579,7 @@ ul.nav-tabs  li a{
    -ms-transition: background 0.7s ease;
    transition: background 0.7s ease;   
    font-family:"Open Sans Condensed", sans-serif;
-   font-size:15px !important;
+   font-size:13px !important;
    font-weight:bold;
    text-transform:uppercase;
 }

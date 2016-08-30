@@ -33,7 +33,7 @@
 
 					<!-- Nav tabs -->
 					<ul class="nav nav-tabs nav-justified">
-					  <li class="active"><a href="#login" data-toggle="tab" class="br-orange"><i class="fa fa-edit	"></i> Register</a></li>
+					  <li class="active"><a href="#login" data-toggle="tab" class="br-orange">Intouch Technology Ecommerce Backoffice <br/><br/><i class="fa fa-edit"> </i> Admin Register</a></li>
 					</ul>
 
 					<!-- Tab panes -->
@@ -41,11 +41,12 @@
 					  <div class="tab-pane fade active in" id="register">
 						<!-- Register form -->
 					  
-						<div class="alert alert-warning">When you registered, you still can't login <strong>until you receive activated from another users.</strong></div>
-
-						
 						<form role="form" method="post" action="{{ url('/backoffice/register') }}">
-						
+							@if (session('success-register'))
+							    <div class="alert alert-success">
+							            <strong>{{session('success-register')}}</strong>
+							    </div>
+							@endif
 						  <div class="form-group{{ $errors->has('fullname') ? ' has-error' : '' }}">
 							<label for="name">Full Name</label>
 							<input  type="text" name="fullname" class="form-control" id="fullname" value="{{ old('fullname') ?: '' }}" placeholder="Enter your fullname">
@@ -73,7 +74,7 @@
 
                                 @if ($errors->has('password_confirmation'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                        {{ $errors->first('password_confirmation') }}
                                     </span>
                                 @endif
                         	</div>
@@ -81,6 +82,10 @@
 						  	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						  	<button type="submit" class="btn btn-warning btn-sm">Submit</button>
 						  	<button type="reset" class="btn btn-default btn-sm">Reset</button>
+						  	<div class="pull-right">
+                				<a href="{{ url('backoffice/login') }}"><i class="fa fa-edit"> </i> Admin Login</a>
+                			</div>
+                			<div class="clearfix"></div>
 						</form>
 					  
 					  </div>
