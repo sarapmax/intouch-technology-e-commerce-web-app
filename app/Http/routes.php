@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('backoffice.category.index');
+});
+
+Route::get('/backoffice/login', function () {
+    return view('backoffice.login');
 });
