@@ -11,10 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('backoffice.category.index');
-});
+// Route::get('/', function () {
+//     return view('backoffice.category.index');
+// });
 
-Route::get('/backoffice/login', function () {
-    return view('backoffice.login');
-});
+Route::get('/backoffice/login', 'AdminAuthController@getLogin');
+
+Route::get('backoffice/register', 'AdminAuthController@getRegister');
+Route::post('/backoffice/register', 'AdminAuthController@postRegister');

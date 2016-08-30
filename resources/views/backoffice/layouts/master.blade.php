@@ -124,7 +124,7 @@
 				<!-- Mainbar head ends -->
 				
 				{{-- alert --}}
-				@include('backend.layouts.partials.alert')
+				@include('backoffice.layouts.partials.alert')
 				
 				<div class="main-content">
 					<div class="container">
