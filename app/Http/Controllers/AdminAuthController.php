@@ -40,6 +40,22 @@ class AdminAuthController extends Controller
 	}
 
     public function postLogin(Request $request) {
-    	
+    	$this->validate($request, [
+    		'email' => 'required|email',
+    		'password' => 'required'
+    	]);
+
+    	$auth = auth()->guard('admin');
+ 
+        $credentials = [
+            'email' =>  $request->input('email'),
+            'password' =>  $request->input('password'),
+        ];
+
+    	if ($auth->attempt($credentials)) {
+             echo "OK";                  
+        } else {
+            echo 'Error';
+        }
     }
 }

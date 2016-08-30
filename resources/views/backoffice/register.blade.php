@@ -45,6 +45,7 @@
 
 						
 						<form role="form" method="post" action="{{ url('/backoffice/register') }}">
+						
 						  <div class="form-group{{ $errors->has('fullname') ? ' has-error' : '' }}">
 							<label for="name">Full Name</label>
 							<input  type="text" name="fullname" class="form-control" id="fullname" value="{{ old('fullname') ?: '' }}" placeholder="Enter your fullname">

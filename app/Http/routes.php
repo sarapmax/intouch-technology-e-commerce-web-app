@@ -16,6 +16,7 @@
 // });
 
 Route::get('/backoffice/login', 'AdminAuthController@getLogin');
+Route::post('/backoffice/login', 'AdminAuthController@postLogin');
 
 Route::get('backoffice/register', 'AdminAuthController@getRegister');
 Route::post('/backoffice/register', 'AdminAuthController@postRegister');
