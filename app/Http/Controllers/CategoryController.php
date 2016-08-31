@@ -16,7 +16,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('backoffice.category.index');
+        $categories = Category::orderBy('title', 'DESC')->get();
+
+        return view('backoffice.category.index', compact('categories'));
     }
 
     /**
@@ -41,12 +43,10 @@ class CategoryController extends Controller
             'title' => 'required|min:5|max:255|unique:categories'
         ]);
 
-        Category::create([
-            'title' => $request->input('title')
-        ]);
+        Category::create($request->all());
 
-        return redirect('backoffice/category/create')
-               ->with('info', 'Create category successfully ! <a style="color:#31708f;" href="category"><strong> View Category</strong></a>');
+        return redirect()->route('backoffice.category.index')
+                         ->with('alert-success', $request->input('title')." category was created !");
     }
 
     /**
@@ -68,7 +68,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+
+        return view('backoffice.category.edit', compact('category'));
     }
 
     /**
@@ -80,7 +82,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|min:5|max:255|unique:categories'
+        ]);
+
+        Category::find($id)->update($request->all());
+        return redirect()->route('backoffice.category.index')
+                         ->with('alert-success', $request->input('title')." category was updated !");
     }
 
     /**
@@ -89,8 +97,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        Category::find($id)->delete();
+
+        return redirect()->route('backoffice.category.index')
+                         ->with('alert-success', $request->input('title')." category was deleted !");
     }
 }

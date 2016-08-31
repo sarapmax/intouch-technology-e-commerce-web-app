@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<!-- Title here -->
-		<title>Backend - Intouch Technology</title>
+		<title>Backoffice - Intouch Technology E-Commerce</title>
 		<!-- Description, Keywords and Author -->
 		<meta name="description" content="Your description">
 		<meta name="keywords" content="Your,Keywords">
@@ -21,9 +21,12 @@
 		<link href="{{ asset('backend-style/css/less-style.css') }}" rel="stylesheet">	
 		<!-- Custom CSS -->
 		<link href="{{ asset('backend-style/css/style.css') }}" rel="stylesheet">
+		<!-- jQuery Datatables -->
+		<link href="{{ asset('backend-style/css/jquery.dataTables.css') }}" rel="stylesheet">
 		
 		<!-- Favicon -->
 		<link rel="shortcut icon" href="#">
+
 	</head>
 	
 	<body>
@@ -137,51 +140,25 @@
 			
 			<div class="clearfix"></div>
 		</div>
-		
+
+
 		<!-- Javascript files -->
-	<!-- jQuery -->
-		<script src="{{ asset('backend-style/js/jquery.js') }}"></script>
+		<!-- jQuery -->
+		<script src="{{ asset('bower_components/jquery/dist/jquery.js') }}"></script>
 		<!-- Bootstrap JS -->
 		<script src="{{ asset('backend-style/js/bootstrap.min.js') }}"></script>
+
 		<!-- jQuery UI -->
 		<script src="{{ asset('backend-style/js/jquery-ui.min.js') }}"></script>
 		<!-- Date Time Picker JS -->
 		<script src="{{ asset('backend-style/js/bootstrap-datetimepicker.min.js') }}"></script>	
 		<!-- Bootstrap wysihtml5 JS -->		
 		<script src="{{ asset('backend-style/js/wysihtml5-0.3.0.js') }}"></script>
-		<script src="{{ asset('backend-style/prettify.js/') }}"></script>
+		<script src="{{ asset('backend-style/js/prettify.js/') }}"></script>
 		<script src="{{ asset('backend-style/js/bootstrap-wysihtml5.min.js') }}"></script>
-	
-		<!-- jQuery flot -->
-		<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
-{{-- 		<script src="js/jquery.flot.min.js"></script>     
-		<script src="js/jquery.flot.stack.min.js"></script>
-		<script src="js/jquery.flot.pie.min.js"></script>
-		<script src="js/jquery.flot.resize.min.js"></script> --}}
-		
-		<!-- Validate JS -->
-		{{-- <script src="js/jquery.validate.js"></script> --}}
-		<!-- Form wizard steps  JS -->
-		{{-- <script src="js/jquery.steps.min.js"></script> --}}
-		<!-- jQuery Knob -->
-		{{-- <script src="js/jquery.knob.js"></script> --}}
-		<!-- jQuery Sparklines -->
-		{{-- <script src="js/jquery.sparklines.js"></script> --}}
-		<!-- jQuery slim scroll -->
-		{{-- <script src="js/jquery.slimscroll.min.js"></script> --}}
+
 		<!-- Data Tables JS -->
-		{{-- <script src="js/jquery.dataTables.min.js"></script>	 --}}
-		<!-- Pretty Photo JS -->
-		{{-- <script src="js/jquery.prettyPhoto.js"></script>	 --}}
-		<!-- Rate It JS -->
-		{{-- <script src="js/jquery.rateit.min.js"></script>	 --}}
-		<!-- Full calendar -->
-	    {{-- <script src="js/moment.min.js"></script> --}}
-	    {{-- <script src="js/fullcalendar.min.js"></script> --}}
-		<!-- jQuery gritter -->
-		{{-- <script src="js/jquery.gritter.min.js"></script> --}}
-		<!-- jQuery gritter notification -->
-		{{-- <script src="js/custom.notification.js"></script> --}}
+		<script src="{{ asset('backend-style/js/jquery.dataTables.min.js') }}"></script>	
 		<!-- Respond JS for IE8 -->
 		<script src="{{ asset('backend-style/js/respond.min.js') }}"></script>
 		<!-- HTML5 Support for IE -->
@@ -190,6 +167,20 @@
 		<!-- Javascript for this page -->      
 		<!-- Custom JS -->
 		<script src="{{ asset('backend-style/js/custom.js') }}"></script>
+		
+
+		<script>
+		/* ****************************************** */
+		/* Data Table JS */
+		/* ****************************************** */
+
+		$(document).ready(function() {
+			$('#data-table').dataTable({
+			   "sPaginationType": "full_numbers"
+			});
+		});
+		</script>
+
 		
 	</body>	
 </html>

@@ -6,7 +6,7 @@
 	<!-- Heading -->
 	<div class="single-head">
 		<!-- Heading -->
-		<h3 class="pull-left"><i class="fa fa-plus-square fa-lg"> </i> Add Category</h3>
+		<h3 class="pull-left"><i class="fa fa-edit fa-lg"> </i> Edit Category</h3>
 		<!-- Bread crumbs -->
 		<div class="breads pull-right">
 			<a href="{{ url('backoffice/category') }}" class="btn btn-warning"><i class="fa fa-tasks"> </i> Category</a>
@@ -15,12 +15,11 @@
 	</div>
 	
 	<div class="page-form">
-		<form class="form-horizontal" role="form" method="post" action="{{ url('backoffice/category') }}">
-		{{ Form::open(array('route' => 'backoffice.category.store', 'method' => 'POST', 'class' => 'form-horizontal')) }}
+		{{ Form::model($category, ['method' => 'PATCH','route' => ['backoffice.category.update', $category->id], 'class' => 'form-horizontal']) }}
 			<div class="form-group">
 				<label class="col-md-2 control-label">Title : </label>
 				<div class="col-md-8">
-					<input type="text" class="form-control" name="title" placeholder="Enter Category Title" value="{{ old('title') }}">
+					<input type="text" class="form-control" name="title" placeholder="Enter Category Title" value="{{ $category->title }}">
 					@if ($errors->has('title'))
                         <span style="color:#a94442;" class="help-block">{{ $errors->first('title') }}</span>
                     @endif
@@ -30,7 +29,7 @@
 				</div>
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			</div>
-		</form>
+		{{ Form::close() }}
 </div>
 	
 </div>
