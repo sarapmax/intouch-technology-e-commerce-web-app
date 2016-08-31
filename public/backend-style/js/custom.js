@@ -74,21 +74,21 @@ $(document).ready(function(){
 /* Slim Scroll */
 /* ****************************************** */
 
-$(function(){
-    $('.scroll').slimScroll({
-        height: '315px',
-		size: '5px',
-		color:'rgba(50,50,50,0.3)'
-    });
-});	
+// $(function(){
+//     $('.scroll').slimScroll({
+//         height: '315px',
+// 		size: '5px',
+// 		color:'rgba(50,50,50,0.3)'
+//     });
+// });	
 
 /* ****************************************** */
 /* Knob */
 /* ****************************************** */
 
-$(function() {
-    $(".knob").knob();
-});
+// $(function() {
+//     $(".knob").knob();
+// });
 
 /* ****************************************** */
 /* JS for UI Tooltip */
@@ -160,151 +160,151 @@ $(function() {
 /* Calendar */
 /* ****************************************** */
 
-  $(document).ready(function() {
+  // $(document).ready(function() {
   
-    var date = new Date();
-    var d = date.getDate();
-    var m = date.getMonth();
-    var y = date.getFullYear();
+  //   var date = new Date();
+  //   var d = date.getDate();
+  //   var m = date.getMonth();
+  //   var y = date.getFullYear();
     
-    $('#calendar').fullCalendar({
-      header: {
-        left: 'prev',
-        center: 'title',
-        right: 'month,agendaWeek,agendaDay,next'
-      },
-      editable: true,
-      events: [
-        {
-          title: 'All Day Event',
-          start: new Date(y, m, 1)
-        },
-        {
-          title: 'Long Event',
-          start: new Date(y, m, d-5),
-          end: new Date(y, m, d-2)
-        },
-        {
-          id: 999,
-          title: 'Repeating Event',
-          start: new Date(y, m, d-3, 16, 0),
-          allDay: false
-        },
-        {
-          id: 999,
-          title: 'Repeating Event',
-          start: new Date(y, m, d+4, 16, 0),
-          allDay: false
-        },
-        {
-          title: 'Meeting',
-          start: new Date(y, m, d, 10, 30),
-          allDay: false
-        },
-        {
-          title: 'Lunch',
-          start: new Date(y, m, d, 12, 0),
-          end: new Date(y, m, d, 14, 0),
-          allDay: false
-        },
-        {
-          title: 'Birthday Party',
-          start: new Date(y, m, d+1, 19, 0),
-          end: new Date(y, m, d+1, 22, 30),
-          allDay: false
-        },
-        {
-          title: 'Click for Google',
-          start: new Date(y, m, 28),
-          end: new Date(y, m, 29),
-          url: 'http://google.com/'
-        }
-      ]
-    });
+  //   $('#calendar').fullCalendar({
+  //     header: {
+  //       left: 'prev',
+  //       center: 'title',
+  //       right: 'month,agendaWeek,agendaDay,next'
+  //     },
+  //     editable: true,
+  //     events: [
+  //       {
+  //         title: 'All Day Event',
+  //         start: new Date(y, m, 1)
+  //       },
+  //       {
+  //         title: 'Long Event',
+  //         start: new Date(y, m, d-5),
+  //         end: new Date(y, m, d-2)
+  //       },
+  //       {
+  //         id: 999,
+  //         title: 'Repeating Event',
+  //         start: new Date(y, m, d-3, 16, 0),
+  //         allDay: false
+  //       },
+  //       {
+  //         id: 999,
+  //         title: 'Repeating Event',
+  //         start: new Date(y, m, d+4, 16, 0),
+  //         allDay: false
+  //       },
+  //       {
+  //         title: 'Meeting',
+  //         start: new Date(y, m, d, 10, 30),
+  //         allDay: false
+  //       },
+  //       {
+  //         title: 'Lunch',
+  //         start: new Date(y, m, d, 12, 0),
+  //         end: new Date(y, m, d, 14, 0),
+  //         allDay: false
+  //       },
+  //       {
+  //         title: 'Birthday Party',
+  //         start: new Date(y, m, d+1, 19, 0),
+  //         end: new Date(y, m, d+1, 22, 30),
+  //         allDay: false
+  //       },
+  //       {
+  //         title: 'Click for Google',
+  //         start: new Date(y, m, 28),
+  //         end: new Date(y, m, 29),
+  //         url: 'http://google.com/'
+  //       }
+  //     ]
+  //   });
     
-  });
+  // });
   
 /* ****************************************** */
 /* Form Validate // Form Validation */
 /* ****************************************** */
 
-$.validator.setDefaults({
-	submitHandler: function() { alert("submitted!"); }
-});
+// $.validator.setDefaults({
+// 	submitHandler: function() { alert("submitted!"); }
+// });
 
-$().ready(function() {
+// $().ready(function() {
 
-	// validate signup form on keyup and submit
-	$("#signupForm").validate({
-		rules: {
-			firstname: "required",
-			lastname: "required",
-			username: {
-				required: true,
-				minlength: 2
-			},
-			password: {
-				required: true,
-				minlength: 5
-			},
-			confirm_password: {
-				required: true,
-				minlength: 5,
-				equalTo: "#password"
-			},
-			email: {
-				required: true,
-				email: true
-			},
-			gender: {
-				required: true
-			},
-			limit: {
-				required: true
-			},
-			location: {
-				required: true
-			},
-			agree: "required"
-		},
-		messages: {
-			firstname: "Please enter your firstname",
-			lastname: "Please enter your lastname",
-			username: {
-				required: "Please enter a username",
-				minlength: "Your username must consist of at least 2 characters"
-			},
-			password: {
-				required: "Please provide a password",
-				minlength: "Your password must be at least 5 characters long"
-			},
-			confirm_password: {
-				required: "Please provide a password",
-				minlength: "Your password must be at least 5 characters long",
-				equalTo: "Please enter the same password as above"
-			},
-			email: "Please enter a valid email address",
-			gender: "Please choose gender",
-			limit: "Please choose at least one option",
-			location: "Please select your location",
-			agree: "Please accept our policy"
-		}
-	});
+// 	// validate signup form on keyup and submit
+// 	$("#signupForm").validate({
+// 		rules: {
+// 			firstname: "required",
+// 			lastname: "required",
+// 			username: {
+// 				required: true,
+// 				minlength: 2
+// 			},
+// 			password: {
+// 				required: true,
+// 				minlength: 5
+// 			},
+// 			confirm_password: {
+// 				required: true,
+// 				minlength: 5,
+// 				equalTo: "#password"
+// 			},
+// 			email: {
+// 				required: true,
+// 				email: true
+// 			},
+// 			gender: {
+// 				required: true
+// 			},
+// 			limit: {
+// 				required: true
+// 			},
+// 			location: {
+// 				required: true
+// 			},
+// 			agree: "required"
+// 		},
+// 		messages: {
+// 			firstname: "Please enter your firstname",
+// 			lastname: "Please enter your lastname",
+// 			username: {
+// 				required: "Please enter a username",
+// 				minlength: "Your username must consist of at least 2 characters"
+// 			},
+// 			password: {
+// 				required: "Please provide a password",
+// 				minlength: "Your password must be at least 5 characters long"
+// 			},
+// 			confirm_password: {
+// 				required: "Please provide a password",
+// 				minlength: "Your password must be at least 5 characters long",
+// 				equalTo: "Please enter the same password as above"
+// 			},
+// 			email: "Please enter a valid email address",
+// 			gender: "Please choose gender",
+// 			limit: "Please choose at least one option",
+// 			location: "Please select your location",
+// 			agree: "Please accept our policy"
+// 		}
+// 	});
 
-});
+// });
 
 /* ****************************************** */
 /* Form Wizard */
 /* ****************************************** */
 
-$(document).ready(function() {
+// $(document).ready(function() {
 
-	$("#wizard").steps({
-		headerTag: "h2",
-		transitionEffect: "slide",
-		autoFocus: true
-	});
-});
+// 	$("#wizard").steps({
+// 		headerTag: "h2",
+// 		transitionEffect: "slide",
+// 		autoFocus: true
+// 	});
+// });
 
 /* ****************************************** */
 /* Compose Mail Form word processor JS */

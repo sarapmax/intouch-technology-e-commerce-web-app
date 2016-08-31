@@ -244,7 +244,7 @@ ul.nav-tabs  li a{
 /* Alert */
 
 .alert{
-	/*border-radius: 5px !important;*/
+	border-radius: 5px !important;
 }
 
 .alert-dismissable .close{
