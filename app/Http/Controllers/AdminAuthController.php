@@ -65,11 +65,7 @@ class AdminAuthController extends Controller
         ];
 
     	if ($auth->attempt($credentials, $request->input('remember'))) {
-    		if(Auth::guard('admin')->user()->activated) {
-    			return redirect('backoffice/dashboard');   
-    		}else {
-   				return redirect()->back()->with('error-notactivated', 'You are not activated');
-    		}
+    		return redirect('backoffice/dashboard');   
         }else {
             return redirect()->back()->with('error-login', 'Invalid email or password');
         }
