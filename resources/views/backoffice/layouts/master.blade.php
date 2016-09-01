@@ -55,15 +55,15 @@
 							<h4>Main</h4>
 							<!-- Sidebar links -->
 							<ul class="list-unstyled">
-								<li><a href="{{ url('backoffice/dashboard') }}" class="active"><i class="fa fa-desktop"></i> Dashboard</a></li>
+								<li><a href="{{ route('backoffice.dashboard.index') }}" class="active"><i class="fa fa-desktop"></i> Dashboard</a></li>
 							</ul>
 						</div>
 						
 						<div class="side-nav-block">
 							<h4>Menu</h4>
 							<ul class="list-unstyled">
-								<li><a href="{{ url('backoffice/category') }}"><i class="fa fa-tasks"></i> Category</a></li>
-								<li><a href="login.html"><i class="fa fa-cubes"></i> Product</a></li>
+								<li><a href="{{ route('backoffice.category.index') }}"><i class="fa fa-tasks"></i> Category</a></li>
+								<li><a href="{{ route('backoffice.product.index') }}"><i class="fa fa-cubes"></i> Product</a></li>
 								<li><a href="404.html"><i class="fa fa-clone"></i> Order</a></li>
 								<li><a href="grid.html"><i class="fa fa-sticky-note"></i> Report</a></li>
 							</ul>
@@ -167,6 +167,11 @@
 		<!-- Javascript for this page -->      
 		<!-- Custom JS -->
 		<script src="{{ asset('backend-style/js/custom.js') }}"></script>
+
+		{{-- TynyMCE Text Editor --}}
+		<script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
+
+		<script src="{{ asset('/vendor/laravel-filemanager/js/lfm.js') }}"></script>
 		
 
 		<script>
@@ -178,7 +183,79 @@
 			$('#data-table').dataTable({
 			   "sPaginationType": "full_numbers"
 			});
+
+			tinymce.init({
+		    	selector: '#shortdesc',
+		    	plugins: 'link',
+		    	content_css: [
+			    	'//https://fonts.google.com/?selection.family=Open+Sans',
+			    	'//www.tinymce.com/css/codepen.min.css'
+			  	]
+		  	});
+
+		  	// tinymce.init({
+		   //  	selector: '#longdesc',
+		   //  	plugins: [
+			  //   	'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+			  //   	'searchreplace wordcount visualblocks visualchars code fullscreen',
+			  //   	'insertdatetime media nonbreaking save table contextmenu directionality',
+			  //   	'emoticons template paste textcolor colorpicker textpattern imagetools'
+			  // 	],
+			  // 	toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+			  // 	toolbar2: 'print preview media | forecolor backcolor emoticons',
+			  // 	image_advtab: true,
+			  // 	content_css: [
+			  //   	'//https://fonts.google.com/?selection.family=Open+Sans',
+			  //   	'//www.tinymce.com/css/codepen.min.css'
+			  // 	]
+		  	// });
+
+		  	tinymce.init({
+		    	selector: '#specfication',
+		    	plugins: 'link table',
+		    	content_css: [
+			    	'//https://fonts.google.com/?selection.family=Open+Sans',
+			    	'//www.tinymce.com/css/codepen.min.css'
+			  	]
+		  	});
+
+		  	var editor_config = {
+			    path_absolute : "{{ url('/') }}/",
+			    selector: "#longdesc",
+			    plugins: [
+			      	"advlist autolink lists link image charmap print preview hr anchor pagebreak",
+			      	"searchreplace wordcount visualblocks visualchars code fullscreen",
+			      	"insertdatetime media nonbreaking save table contextmenu directionality",
+			      	"emoticons template paste textcolor colorpicker textpattern"
+			    ],
+			    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
+			    relative_urls: false,
+			    file_browser_callback : function(field_name, url, type, win) {
+			      	var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+			      	var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+
+			      	var cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
+			      	if (type == 'image') {
+			      	  cmsURL = cmsURL + "&type=Images";
+			      	} else {
+			      	  cmsURL = cmsURL + "&type=Files";
+			      	}
+
+			      	tinyMCE.activeEditor.windowManager.open({
+			        	file : cmsURL,
+			        	title : 'Filemanager',
+			        	width : x * 0.8,
+			        	height : y * 0.8,
+			        	resizable : "yes",
+			        	close_previous : "no"
+			      	});
+			    }
+			};
+
+			tinymce.init(editor_config);
 		});
+
+		$('#lfm').filemanager('image');
 		</script>
 
 		

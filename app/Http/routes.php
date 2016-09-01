@@ -15,15 +15,23 @@
 //     return view('backoffice.category.index');
 // });
 
-Route::get('backoffice/login', 'AdminAuthController@getLogin');
-Route::post('backoffice/login', 'AdminAuthController@postLogin');
+Route::group(['middleware' => ['guest']], function () {
+	
+	Route::get('backoffice/login', 'AdminAuthController@getLogin');
+	Route::post('backoffice/login', 'AdminAuthController@postLogin');
 
-Route::get('backoffice/logout', 'AdminAuthController@getLogout');
+	Route::get('backoffice/register', 'AdminAuthController@getRegister');
+	Route::post('backoffice/register', 'AdminAuthController@postRegister');
+});
 
-Route::get('backoffice/register', 'AdminAuthController@getRegister');
-Route::post('backoffice/register', 'AdminAuthController@postRegister');
+Route::group(['middleware' => ['admin', 'admin_activated']], function () {
 
+	Route::get('backoffice/dashboard', [
+		'uses' => 'DashboardController@index',
+		'as' => 'backoffice.dashboard.index'
+	]);
 
-Route::get('backoffice/dashboard', 'DashboardController@index');
+    Route::resource('backoffice/category','CategoryController');
 
-Route::resource('backoffice/category','CategoryController');
+    Route::resource('backoffice/product', 'ProductController');
+});

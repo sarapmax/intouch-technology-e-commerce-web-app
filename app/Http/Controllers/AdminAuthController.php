@@ -34,7 +34,7 @@ class AdminAuthController extends Controller
 
     	Admin::create([
     		'email' => $request->input('email'),
-    		'password' => $request->input('password'),
+    		'password' => bcrypt($request->input('password')),
     		'fullname' => $request->input('fullname'),
     		'activated' => $request->input('activated')
     	]);
