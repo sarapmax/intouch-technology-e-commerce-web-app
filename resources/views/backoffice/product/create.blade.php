@@ -15,13 +15,18 @@
 	</div>
 	
 	<div class="page-form">
-		{{ Form::open(array('route' => 'backoffice.product.store', 'method' => 'POST', 'class' => 'form-horizontal')) }}
+  
+		{{ Form::open(array('route' => 'backoffice.product.store', 'method' => 'POST', 'class' => 'form-horizontal', 'files' => true)) }}
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+			<input type="hidden" name="live" value="1">
 			<div class="form-group">
-				<label class="col-md-2 control-label">Category : </label>
+				<label class="col-md-2 control-label"><span style="color:#a94442">* </span> Category : </label>
 				<div class="col-md-6">
 					<select name="category_id" class="form-control">
 						<option value="">Select Category</option>
+						@foreach($categories as $category)
+							<option value="{{ $category->id }}" @if (old('category_id') == $category->id) selected="selected" @endif>{{ $category->title }}</option>
+						@endforeach
 					</select>
 					@if ($errors->has('category_id'))
                         <span style="color:#a94442;" class="help-block">{{ $errors->first('category_id') }}</span>
@@ -30,16 +35,16 @@
 			</div>
 			<hr/>
 			<div class="form-group">
-				<label class="col-md-2 control-label">Product Name : </label>
+				<label class="col-md-2 control-label"><span style="color:#a94442">* </span> Product Name : </label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" name="name" placeholder="Enter product name" value="{{ old('name') }}">
+					<input type="text" class="form-control" id="name" name="name" placeholder="Enter product name" value="{{ old('name') }}">
 					@if ($errors->has('name'))
                         <span style="color:#a94442;" class="help-block">{{ $errors->first('name') }}</span>
                     @endif
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-md-2 control-label">Price : </label>
+				<label class="col-md-2 control-label"><span style="color:#a94442">* </span> Price : </label>
 				<div class="col-md-2">
 					<div class="input-group">
 						<input type="number" class="form-control" name="price" placeholder="Enter product price" value="{{ old('price') }}">
@@ -51,7 +56,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-md-2 control-label">Stock Amount : </label>
+				<label class="col-md-2 control-label"><span style="color:#a94442">* </span> Stock Amount : </label>
 				<div class="col-md-2">
 					<input type="number" class="form-control" name="stock" placeholder="Enter product stock amount" value="{{ old('stock') }}">
 					@if ($errors->has('stock'))
@@ -81,23 +86,39 @@
 			<div class="form-group">
 				<label class="col-md-2 control-label">Product Specfication : </label>
 				<div class="col-md-10">
-					<textarea name="specfication" id="specfication" rows="10">{!! old('specfication') !!}</textarea>
-					@if ($errors->has('specfication'))
-                        <span style="color:#a94442;" class="help-block">{{ $errors->first('specfication') }}</span>
+					<textarea name="specfications" id="specfications" rows="10">{!! old('specfications') !!}</textarea>
+					@if ($errors->has('specfications'))
+                        <span style="color:#a94442;" class="help-block">{{ $errors->first('specfications') }}</span>
                     @endif
 				</div>
 			</div>
-			  <div class="input-group">
-      <span class="input-group-btn">
-        <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-          <i class="fa fa-picture-o"></i> Choose
-        </a>
-      </span>
-      <input id="thumbnail" class="form-control" type="text" name="filepath">
-    </div>
-    <img id="holder" style="margin-top:15px;max-height:100px;">
+			<hr/>
+			<div class="form-group">
+				<label class="col-md-2 control-label"><span style="color:#a94442">* </span> Product Thumbnail Image : </label>
+				<div class="col-md-5">
+					<input type="file" name="thumb_image" class="form-control" value="{{ old('thumb_image') }}">
+					@if ($errors->has('thumb_image'))
+                        <span style="color:#a94442;" class="help-block">{{ $errors->first('thumb_image') }}</span>
+                    @endif
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">Product Images ( multiple images ) : </label>
+				<div class="col-md-5">
+					<input type="file" name="images[]" class="form-control" multiple value="{{ old('images') }}">
+					@if ($errors->has('images'))
+                        <span style="color:#a94442;" class="help-block">{{ $errors->first('images') }}</span>
+                    @endif
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-10">
+					<button type="submit" class="btn btn-warning"><i class="fa fa-check"></i> Submit</button>
+				</div>
+			</div>
+        </div>
 		{{ Form::close() }}
-</div>
+	</div>
 	
 </div>
 

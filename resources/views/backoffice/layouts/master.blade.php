@@ -23,6 +23,9 @@
 		<link href="{{ asset('backend-style/css/style.css') }}" rel="stylesheet">
 		<!-- jQuery Datatables -->
 		<link href="{{ asset('backend-style/css/jquery.dataTables.css') }}" rel="stylesheet">
+
+		{{-- dropzone --}}
+		<link rel="stylesheet" href="{{ asset('dropzone-4.0.1/dist/dropzone.css') }}">
 		
 		<!-- Favicon -->
 		<link rel="shortcut icon" href="#">
@@ -171,7 +174,11 @@
 		{{-- TynyMCE Text Editor --}}
 		<script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
 
+		{{-- file manager --}}
 		<script src="{{ asset('/vendor/laravel-filemanager/js/lfm.js') }}"></script>
+		
+		{{-- dropzone js --}}
+		<script src="{{ asset('dropzone-4.0.1/dist/dropzone.js') }}"></script>
 		
 
 		<script>
@@ -188,33 +195,16 @@
 		    	selector: '#shortdesc',
 		    	plugins: 'link',
 		    	content_css: [
-			    	'//https://fonts.google.com/?selection.family=Open+Sans',
+			    	// '//https://fonts.google.com/?selection.family=Open+Sans',
 			    	'//www.tinymce.com/css/codepen.min.css'
 			  	]
 		  	});
 
-		  	// tinymce.init({
-		   //  	selector: '#longdesc',
-		   //  	plugins: [
-			  //   	'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-			  //   	'searchreplace wordcount visualblocks visualchars code fullscreen',
-			  //   	'insertdatetime media nonbreaking save table contextmenu directionality',
-			  //   	'emoticons template paste textcolor colorpicker textpattern imagetools'
-			  // 	],
-			  // 	toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-			  // 	toolbar2: 'print preview media | forecolor backcolor emoticons',
-			  // 	image_advtab: true,
-			  // 	content_css: [
-			  //   	'//https://fonts.google.com/?selection.family=Open+Sans',
-			  //   	'//www.tinymce.com/css/codepen.min.css'
-			  // 	]
-		  	// });
-
 		  	tinymce.init({
-		    	selector: '#specfication',
+		    	selector: '#specfications',
 		    	plugins: 'link table',
 		    	content_css: [
-			    	'//https://fonts.google.com/?selection.family=Open+Sans',
+			    	// '//https://fonts.google.com/?selection.family=Open+Sans',
 			    	'//www.tinymce.com/css/codepen.min.css'
 			  	]
 		  	});
@@ -254,9 +244,7 @@
 
 			tinymce.init(editor_config);
 		});
-
-		$('#lfm').filemanager('image');
-		</script>
+	</script>
 
 		
 	</body>	
