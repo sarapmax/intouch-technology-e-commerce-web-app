@@ -49,7 +49,7 @@ class CategoryController extends Controller
         Category::create($request->all());
 
         return redirect()->route('backoffice.category.index')
-                         ->with('alert-success', $request->input('title')." category was created !");
+                         ->with('alert-success', "<strong>".$request->input('title')."</strong> category was created !");
     }
 
     /**
@@ -91,7 +91,7 @@ class CategoryController extends Controller
 
         Category::find($id)->update($request->all());
         return redirect()->route('backoffice.category.index')
-                         ->with('alert-success', $request->input('title')." category was updated !");
+                         ->with('alert-success', "<strong>".$request->input('title')."</strong> category was updated !");
     }
 
     /**
@@ -105,6 +105,6 @@ class CategoryController extends Controller
         Category::find($id)->delete();
 
         return redirect()->route('backoffice.category.index')
-                         ->with('alert-success', $request->input('title')." category was deleted !");
+                         ->with('alert-success',"<strong>". $request->input('title')."</strong> category was deleted !");
     }
 }

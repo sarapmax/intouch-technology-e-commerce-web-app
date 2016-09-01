@@ -15,7 +15,6 @@
 	</div>
 	
 	<div class="page-form">
-		<form class="form-horizontal" role="form" method="post" action="{{ url('backoffice/category') }}">
 		{{ Form::open(array('route' => 'backoffice.category.store', 'method' => 'POST', 'class' => 'form-horizontal')) }}
 			<div class="form-group">
 				<label class="col-md-2 control-label">Title : </label>

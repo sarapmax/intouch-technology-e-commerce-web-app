@@ -5,7 +5,7 @@
 		    	@if(Session::has('alert-' . $msg))
 		    		<div class="alert alert-{{ $msg }} alert-dismissible" role="alert"">
 		    			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		    			<strong>{!! Session::get('alert-' . $msg) !!}</strong>
+		    			{!! Session::get('alert-' . $msg) !!}
 		    		</div>
 		    	@endif
 		  	@endforeach
