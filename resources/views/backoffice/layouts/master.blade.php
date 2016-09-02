@@ -26,6 +26,8 @@
 
 		{{-- dropzone --}}
 		<link rel="stylesheet" href="{{ asset('dropzone-4.0.1/dist/dropzone.css') }}">
+
+		@yield('head-css')
 		
 		<!-- Favicon -->
 		<link rel="shortcut icon" href="#">
@@ -245,6 +247,8 @@
 			tinymce.init(editor_config);
 		});
 	</script>
+
+	@yield('bottom-js')
 
 		
 	</body>	

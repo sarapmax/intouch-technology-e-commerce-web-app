@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Product;
 use App\Category;
+use Image;
 
 class ProductController extends Controller
 {
@@ -59,13 +60,22 @@ class ProductController extends Controller
         if ($request->hasFile('images')) {
             $files = $request->file('images');
             foreach($files as $file){
-                $filename = $file->getClientOriginalName();
-                // $extension = $file->getClientOriginalExtension();
-                $images = date('His').$filename;
-                $destinationPath = base_path() . '\public\images/';
-                $file->move($destinationPath, $images);
+                $input['filename'] = time().'.'.$file->getClientOriginalName();
+                $destinationPath = public_path('/images_thumb');
 
-                $list_images[] = $images;
+                $images = Image::make($file->getRealPath());
+
+                $images->resize(200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+
+                })->save($destinationPath.'/'.$input['filename']);
+
+                $destinationPath = public_path('/images');
+
+                $file->move($destinationPath, $input['filename']);
+
+                $list_images[] = $input['filename'];
+
             }
         }
 
@@ -73,19 +83,28 @@ class ProductController extends Controller
 
         // thumb_image product
         if($request->hasFile('thumb_image')) {
-            $thumb = $request->file('thumb_image');
-            $thumb_filename = $thumb->getClientOriginalName();
-            // $thumb_extension = $thumb->getClientOriginalExtension();
-            $thumb_image = date('His').$thumb_filename;
-            $thumb_destinationPath = base_path() . '/public/thumb_image/';
-            $request->file('thumb_image')->move($thumb_destinationPath, $thumb_image);
+                $thumb = $request->file('thumb_image');
+
+                $input['thumb_name'] = time().'.'.$thumb->getClientOriginalExtension();
+                $destinationPath = public_path('/thumb_image_thumb');
+
+                $thumb_image = Image::make($thumb->getRealPath());
+
+                $thumb_image->resize(300, null, function ($constraint) {
+                    $constraint->aspectRatio();
+
+                })->save($destinationPath.'/'.$input['thumb_name']);
+
+                $destinationPath = public_path('/thumb_image');
+
+                $thumb->move($destinationPath, $input['thumb_name']);
         }
 
         Product::create([
             'category_id' => $request->input('category_id'),
             'name' => $request->input('name'),
             'price' => $request->input('price'),
-            'thumb_image' => $thumb_image,
+            'thumb_image' => $input['thumb_name'],
             'images' => $all_images,
             'stock' => $request->input('stock'),
             'live' => $request->input('live'),
@@ -106,7 +125,9 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+
+        return view('backoffice.product.show', compact('product'));
     }
 
     /**

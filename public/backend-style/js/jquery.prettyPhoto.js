@@ -47,22 +47,17 @@
 								<div class="pp_content"> \
 									<div class="pp_loaderIcon"></div> \
 									<div class="pp_fade"> \
-										<a href="#" class="pp_expand" title="Expand the image">Expand</a> \
+										<a style="margin-right: 20px;margin-top: 9px;" class="pp_close" href="#">Close</a> \
+										<a style="margin-right: 20px;" href="#" class="pp_expand" title="Expand the image">Expand</a> \
 										<div class="pp_hoverContainer"> \
 											<a class="pp_next" href="#">next</a> \
 											<a class="pp_previous" href="#">previous</a> \
 										</div> \
 										<div id="pp_full_res"></div> \
-										<div class="pp_details"> \
-											<div class="pp_nav"> \
-												<a href="#" class="pp_arrow_previous">Previous</a> \
-												<p class="currentTextHolder">0/0</p> \
-												<a href="#" class="pp_arrow_next">Next</a> \
-											</div> \
-											<p class="pp_description"></p> \
-											<div class="pp_social">{pp_social}</div> \
-											<a class="pp_close" href="#">Close</a> \
-										</div> \
+										 <div class="pp_details"> \
+										 	<p class="pp_description"></p> \
+										 	<div class="pp_social">{pp_social}</div> \
+										 </div> \
 									</div> \
 								</div> \
 							</div> \
@@ -190,7 +185,7 @@
 			
 			if(settings.hideflash) $('object,embed,iframe[src*=youtube],iframe[src*=vimeo]').css('visibility','hidden'); // Hide the flash
 
-			_checkPosition($(pp_images).size()); // Hide the next/previous links if on first or last images.
+			// _checkPosition($(pp_images).size()); // Hide the next/previous links if on first or last images.
 		
 			$('.pp_loaderIcon').show();
 		
@@ -208,7 +203,7 @@
 			$pp_overlay.show().fadeTo(settings.animation_speed,settings.opacity);
 
 			// Display the current position
-			$pp_pic_holder.find('.currentTextHolder').text((set_position+1) + settings.counter_separator_label + $(pp_images).size());
+			// $pp_pic_holder.find('.currentTextHolder').text((set_position+1) + settings.counter_separator_label + $(pp_images).size());
 
 			// Set the description
 			if(typeof pp_descriptions[set_position] != 'undefined' && pp_descriptions[set_position] != ""){
