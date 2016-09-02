@@ -77,7 +77,7 @@ class ProductController extends Controller
             $thumb_filename = $thumb->getClientOriginalName();
             // $thumb_extension = $thumb->getClientOriginalExtension();
             $thumb_image = date('His').$thumb_filename;
-            $thumb_destinationPath = base_path() . '\public\thumb_image/';
+            $thumb_destinationPath = base_path() . '/public/thumb_image/';
             $request->file('thumb_image')->move($thumb_destinationPath, $thumb_image);
         }
 
