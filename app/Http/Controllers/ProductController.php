@@ -17,7 +17,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('backoffice.product.index');
+        $products = Product::with('category')->orderBy('category_id', 'DESC')->get();
+        return view('backoffice.product.index', compact('products'));
     }
 
     /**
@@ -27,7 +28,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::all(['id', 'title']);
 
         return view('backoffice.product.create', compact('categories'));
     }
