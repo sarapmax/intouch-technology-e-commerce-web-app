@@ -9,7 +9,7 @@
 		<h3 class="pull-left"><i class="fa fa-cubes orange fa-lg"></i> Product</h3>
 		<!-- Bread crumbs -->
 		<div class="breads pull-right">
-			<a href="{{ route('backoffice.product.create') }}" class="btn btn-warning"><i class="fa fa-plus-square"> </i> Add Product</a>
+			<a href="{{ route('backoffice.product.create') }}" class="btn btn-warning"><i class="fa fa-plus-square"> </i> Add Product 55555</a>
 		</div>
 		<div class="clearfix"></div>
 	</div>
