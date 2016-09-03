@@ -36,7 +36,7 @@
 						<td><img class="img-responsive img-thumbnail" style="width:100px;" src="{{ asset('thumb_image/'.$product->thumb_image) }}" alt="{{ $product->name }}"></td>
 						<td>{{ $product->name }}</td>
 						<td>THB {{ number_format($product->price) }}</td>
-						@if($product->live)
+						@if($product->stock > 0)
 							<td class="green">In stock ( {{ number_format($product->stock) }} )</td>
 						@else
 							<td class="red">Out of stock</td>
@@ -47,8 +47,8 @@
 						<td>
 							<a class="btn" title="Edit" href="{{ route('backoffice.product.edit', $product->id) }}"><i class="fa fa-lg fa-edit blue"> </i></a>
             				{{ Form::open(['method' => 'DELETE','route' => ['backoffice.product.destroy', $product->id],'id'=>'deleteCategory', 'onsubmit' => 'return ConfirmDelete()', 'style'=>'display:inline']) }}
-            					<input type="hidden" name="title" value="{{ $product->name }}">
-                            	<button style="background-color: #fcfcfc;" title="Delete" class="btn" type="submit" onClick="return confirm('DELETE ?')"><i class="fa fa-lg fa-trash red"></i></button>
+            					<input type="hidden" name="name" value="{{ $product->name }}">
+                            	<button style="background-color: #fcfcfc;" title="Delete" class="btn" type="submit" onClick="return confirm('Do you want to delete this product ?')"><i class="fa fa-lg fa-trash red"></i></button>
                             {{ Form::close() }}
 						</td>
 					</tr>

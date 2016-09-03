@@ -27,6 +27,8 @@
 		{{-- dropzone --}}
 		<link rel="stylesheet" href="{{ asset('dropzone-4.0.1/dist/dropzone.css') }}">
 
+
+
 		@yield('head-css')
 		
 		<!-- Favicon -->
@@ -181,6 +183,7 @@
 		
 		{{-- dropzone js --}}
 		<script src="{{ asset('dropzone-4.0.1/dist/dropzone.js') }}"></script>
+		
 		
 
 		<script>

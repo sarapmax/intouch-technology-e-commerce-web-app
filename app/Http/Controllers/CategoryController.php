@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Category;
+use App\Product;
 
 class CategoryController extends Controller
 {
@@ -99,9 +100,17 @@ class CategoryController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        Category::find($id)->delete();
+        $productExist = Product::where('category_id', $id)->first();
 
-        return redirect()->route('backoffice.category.index')
-                         ->with('alert-success',"<strong>". $request->input('title')."</strong> category was deleted !");
+        if(!$productExist) {
+            Category::find($id)->delete();
+
+            return redirect()->back()
+                             ->with('alert-success',"<strong>". $request->input('title')."</strong> category was deleted !");
+        }else {
+            return redirect()->back()
+                             ->with('alert-danger', "You can't delete "."<strong>".$request->input('title')."</strong> category, please delete product(s) which refer to this category first.");
+        }
+        
     }
 }

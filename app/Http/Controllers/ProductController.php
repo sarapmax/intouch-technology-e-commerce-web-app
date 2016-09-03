@@ -107,7 +107,6 @@ class ProductController extends Controller
             'thumb_image' => $input['thumb_name'],
             'images' => $all_images,
             'stock' => $request->input('stock'),
-            'live' => $request->input('live'),
             'shortdesc' => $request->input('shortdesc'),
             'longdesc' => $request->input('longdesc'),
             'specfications' => $request->input('specfications'), 
@@ -138,7 +137,14 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+
+        $categories = Category::all();
+
+        return view('backoffice.product.edit', [
+            'product' => $product,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -150,7 +156,93 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $images = '';
+        $thumb_image = '';
+        $list_images[] = null;
+
+        $product = Product::find($id);
+
+        $this->validate($request, [
+            'category_id' => 'required|alpha_num',
+            'name' => 'required|min:10|max:255',
+            'price' => 'required|alpha_num',
+            'thumb_image' => 'image|max:3000',
+            // 'images' => 'image',
+            'stock' => 'required|alpha_num'
+        ]);
+
+                // product images
+        if ($request->hasFile('images')) {
+            $files = $request->file('images');
+
+            $imagesDelete = explode("|",$product->images);
+            foreach(array_slice($imagesDelete ,1) as $imageDelete) {
+                unlink(public_path('/images_thumb/'.$imageDelete)); 
+                unlink(public_path('/images/'.$imageDelete));       
+            }
+
+            foreach($files as $file){
+                $input['filename'] = time().'.'.$file->getClientOriginalName();
+                $destinationPath = public_path('/images_thumb');
+
+                $images = Image::make($file->getRealPath());
+
+                $images->resize(200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+
+                })->save($destinationPath.'/'.$input['filename']);
+
+                $destinationPath = public_path('/images');
+
+                $file->move($destinationPath, $input['filename']);
+
+                $list_images[] = $input['filename'];
+
+            }
+
+            $all_images = implode("|", $list_images);
+            $product->images = $all_images;
+        }
+
+        
+
+        // thumb_image product
+        if($request->hasFile('thumb_image')) {
+                unlink(public_path('/thumb_image_thumb/'.$product->thumb_image)); 
+                unlink(public_path('/thumb_image/'.$product->thumb_image)); 
+
+                $thumb = $request->file('thumb_image');
+
+                $input['thumb_name'] = time().'.'.$thumb->getClientOriginalExtension();
+                $destinationPath = public_path('/thumb_image_thumb');
+
+                $thumb_image = Image::make($thumb->getRealPath());
+
+                $thumb_image->resize(300, null, function ($constraint) {
+                    $constraint->aspectRatio();
+
+                })->save($destinationPath.'/'.$input['thumb_name']);
+
+                $destinationPath = public_path('/thumb_image');
+
+                $thumb->move($destinationPath, $input['thumb_name']);
+
+                $product->thumb_image = $input['thumb_name'];
+        }
+
+        $product->category_id = $request->input('category_id');
+        $product->name = $request->input('name');
+        $product->price = $request->input('price');
+        $product->stock = $request->input('stock');
+        $product->shortdesc = $request->input('shortdesc');
+        $product->longdesc = $request->input('longdesc');
+        $product->specfications = $request->input('specfications');
+
+        $product->save();
+        return redirect()->route('backoffice.product.index')
+                         ->with('alert-success', "<strong>".$request->input('name')."</strong> product was updated !");
+
+
     }
 
     /**
@@ -159,8 +251,26 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $product = Product::find($id);
+
+        if($product->images) {
+            $imagesDelete = explode("|",$product->images);
+            foreach(array_slice($imagesDelete ,1) as $imageDelete) {
+                unlink(public_path('/images_thumb/'.$imageDelete)); 
+                unlink(public_path('/images/'.$imageDelete));       
+            }
+        }
+
+        if($product->thumb_image) {
+            unlink(public_path('/thumb_image_thumb/'.$product->thumb_image)); 
+            unlink(public_path('/thumb_image/'.$product->thumb_image)); 
+        }
+
+        $product->delete();
+
+        return redirect()->back()
+                         ->with('alert-success',"<strong>". $request->input('name')."</strong> product was deleted !");
     }
 }

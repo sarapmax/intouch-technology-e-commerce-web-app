@@ -21,21 +21,21 @@
 	</div>
 	<div class="page-gallery">
 		<div class="row">
-	    	<div class="col-md-3 col-md-offset-4">
+	    	<center>
 	    		<a  href="{{ asset('thumb_image/'.$product->thumb_image) }}" class="prettyphoto">
 					<img src="{{ asset('thumb_image_thumb/'.$product->thumb_image) }}" class="img-responsive img-thumbnail" alt="{{$product->name}}"/>
 				</a>
-	    	</div>
+	    	</center>
 		</div><br/>
 		<div class="row">
-			<div class="col-md-7 col-md-offset-3">
+			<center>
 				<?php $images = explode("|",$product->images); ?>
 				@foreach(array_slice($images ,1) as $image)
 				<a  href="{{ asset('images/'.$image) }}" class="prettyphoto">
 					<img style="width:120px;" src="{{ asset('images_thumb/'.$image) }}" class="img-responsive img-thumbnail" alt="{{$product->name}}"/>
 				</a>
 				@endforeach
-			</div>
+			</center>
 		</div><br/>
 		<div class="row">
 			<div class="col-md-12">
@@ -54,7 +54,7 @@
 					</tr>
 					<tr>
 						<th>Stock Remain</th>
-						@if($product->live)
+						@if($product->stock > 0)
 							<td class="green">In stock ( {{ number_format($product->stock) }} )</td>
 						@else
 							<td class="red">Out of stock</td>

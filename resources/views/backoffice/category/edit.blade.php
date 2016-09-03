@@ -19,7 +19,7 @@
 			<div class="form-group">
 				<label class="col-md-2 control-label">Title : </label>
 				<div class="col-md-8">
-					<input type="text" class="form-control" name="title" placeholder="Enter Category Title" value="{{ $category->title }}">
+					<input type="text" class="form-control" name="title" placeholder="Enter Category Title" value="{{ old('title', $category->title) }}">
 					@if ($errors->has('title'))
                         <span style="color:#a94442;" class="help-block">{{ $errors->first('title') }}</span>
                     @endif

@@ -34,7 +34,7 @@
 							<a class="btn" title="Edit" href="{{ route('backoffice.category.edit', $category->id) }}"><i class="fa fa-lg fa-edit blue"> </i></a>
             				{{ Form::open(['method' => 'DELETE','route' => ['backoffice.category.destroy', $category->id],'id'=>'deleteCategory', 'onsubmit' => 'return ConfirmDelete()', 'style'=>'display:inline']) }}
             					<input type="hidden" name="title" value="{{ $category->title }}">
-                            	<button style="background-color: #fcfcfc;" title="Delete" class="btn" type="submit" onClick="return confirm('DELETE ?')"><i class="fa fa-lg fa-trash red"></i></button>
+                            	<button style="background-color: #fcfcfc;" title="Delete" class="btn" type="submit" onClick="return confirm('Do you want to delete this category ?')"><i class="fa fa-lg fa-trash red"></i></button>
                             {{ Form::close() }}
 						</td>
 					</tr>
