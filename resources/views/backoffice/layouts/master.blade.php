@@ -71,6 +71,14 @@
 							<ul class="list-unstyled">
 								<li><a href="{{ route('backoffice.category.index') }}"><i class="fa fa-tasks"></i> Category</a></li>
 								<li><a href="{{ route('backoffice.product.index') }}"><i class="fa fa-cubes"></i> Product</a></li>
+								<li class="has_submenu">
+									<a href="#"><i class="fa fa-users"></i> User <span class="nav-caret fa fa-caret-down"></span></a>
+									<!-- Submenu -->
+									<ul class="list-unstyled">
+										<li><a href=""><i class="fa fa-user"></i> Member</a></li>
+										<li><a href="{{ route('backoffice.admin.index') }}"><i class="fa fa-user"></i> Admin</a></li>
+									</ul>
+								</li>
 								<li><a href="404.html"><i class="fa fa-clone"></i> Order</a></li>
 								<li><a href="grid.html"><i class="fa fa-sticky-note"></i> Report</a></li>
 							</ul>

@@ -28,6 +28,16 @@ Route::group(['middleware' => ['guest']], function () {
 
 Route::group(['middleware' => ['admin', 'admin_activated']], function () {
 
+	Route::get('backoffice/admin', [
+		'uses' => 'AdminController@index',
+		'as' => 'backoffice.admin.index'
+	]);
+
+	Route::get('backoffice/admin/activate_admin/{id}', [
+		'uses' => 'AdminController@activate_admin',
+		'as' => 'backoffice.admin.activate_admin'
+	]);
+
 	Route::get('backoffice/dashboard', [
 		'uses' => 'DashboardController@index',
 		'as' => 'backoffice.dashboard.index'
