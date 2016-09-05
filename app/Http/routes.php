@@ -15,8 +15,13 @@
 //     return view('backoffice.category.index');
 // });
 
-Route::group(['middleware' => ['guest']], function () {
 
+Route::group(['middleware' => ['guest']], function () {
+	//Guest
+	Route::get('/', 'HomeController@index');
+
+
+	//Admin
 	Route::get('backoffice/logout', 'AdminAuthController@getLogout');
 	
 	Route::get('backoffice/login', 'AdminAuthController@getLogin');
