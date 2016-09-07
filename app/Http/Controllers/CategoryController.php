@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Category;
 use App\Product;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -44,7 +45,10 @@ class CategoryController extends Controller
             'title' => 'required|min:5|max:255|unique:categories'
         ]);
 
-        Category::create($request->all());
+        Category::create([
+            'title' => $request->input('title'),
+            'slug' => Str::slug($request->input('title'))
+        ]);
 
         return redirect()->route('backoffice.category.index')
                          ->with('alert-success', "<strong>".$request->input('title')."</strong> category was created !");
@@ -87,7 +91,10 @@ class CategoryController extends Controller
             'title' => 'required|min:5|max:255|unique:categories'
         ]);
 
-        Category::find($id)->update($request->all());
+        Category::find($id)->update([
+            'title' => $request->input('title'),
+            'slug' => Str::slug($request->input('title'))
+        ]);
         return redirect()->route('backoffice.category.index')
                          ->with('alert-success', "<strong>".$request->input('title')."</strong> category was updated !");
     }

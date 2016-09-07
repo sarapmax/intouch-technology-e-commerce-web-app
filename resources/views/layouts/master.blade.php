@@ -15,10 +15,11 @@
 	{{-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> --}}
 	<!-- CSS
   ================================================== -->
-	<link rel="stylesheet" href="{{ asset('theme/css/bootstrap.min.css') }}" media="screen">
+	<link rel="stylesheet" href="{{ asset('theme/css/bootstrap.css') }}" media="screen">
 	<!-- jquery ui css -->
 	<link rel="stylesheet" href="{{ asset('theme/css/jquery-ui-1.10.1.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('theme/css/customize.css') }}">
+	<link rel="stylesheet" href="{{ asset('bower_components/font-awesome/css/font-awesome.css') }}">
 	<link rel="stylesheet" href="{{ asset('theme/css/font-awesome.css') }}">
 	<link rel="stylesheet" href="{{ asset('theme/css/style.css') }}">
 	<!-- flexslider css-->
@@ -29,7 +30,9 @@
 	{{-- custom layout style --}}
 	<link rel="stylesheet" href="{{ asset('theme/css/layout/Boxed.css') }}">
 	<link rel="stylesheet" href="{{ asset('theme/css/backgrounds/low_contrast_linen.css ') }}">
-	<link rel="stylesheet" href="{{ asset('theme/css/color/orange.css ') }}">
+	{{-- <link rel="stylesheet" href="{{ asset('theme/css/color/orange.css ') }}"> --}}
+
+	<link rel="stylesheet" href="{{ asset('theme/style.css ') }}">
 	
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -151,30 +154,8 @@
 					<div class="navbar">
 					      	
 				      	<ul class="nav">
-				      		<li class="active"><a href="#"><i class="icon-home"></i></a></li>
-				      		<li>
-				      			<a href="#">Products &nbsp;<i class="icon-caret-down"></i></a>
-				      			<div>
-					      			<ul>
-					      				<li><a href="#"> <span>-</span> Terminals (2)</a></li>
-					      				<li><a href="#"> <span>-</span> Electronics (4)</a></li>
-					      				<li>
-					      					<a href="#"> <span>-</span> Tools (3) <i class="icon-caret-right pull-right"></i></a>
-					      					<div>
-								      			<ul>
-								      				<li><a href="#"> <span>-</span> Cutting (2)</a></li>
-								      				<li><a href="#"> <span>-</span> Stripping the insulation (4)</a></li>
-								      				<li><a href="#"> <span>-</span> Crimping tools (0)</a></li>
-								      			</ul>
-								      		</div>
-					      				</li>
-					      				<li><a href="#"> <span>-</span> Sensor-Actuator-Interface (SAI) (82)</a></li>
-					      				<li><a href="#"> <span>-</span> Electronics housing - OMNIMATE housing (58)</a></li>
-					      				<li><a href="#"> <span>-</span> Device connectivity - OMNIMATE (15)</a></li>
-					      				<li><a href="#"> <span>-</span> Enclosure systems (54) </a></li>
-					      			</ul>
-					      		</div>
-				      		</li>
+				      		<li class="active"><a href="{{ url('/') }}"><i class="icon-home"></i></a></li>
+							<li><a href="{{ url('/products') }}">Products</a></li>
 				      		<li><a href="#">Promotions</a></li>
 				      		<li><a href="#">How to payment</a></li>
 				      		<li><a href="#">About US</a></li>

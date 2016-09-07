@@ -27,7 +27,6 @@
 			    <abbr title="Phone">foe Support:</abbr> <a href="#">DevNDesign@DevNDesign.com</a><br>
 			    <abbr title="Phone">for Sales:</abbr> <a href="#">DevNDesign@DevNDesign.com</a>
 			</address>
-			
 		</div><!--end contact-info-->
 	</div><!--end span4-->
 
@@ -58,7 +57,7 @@
 		</div><!--end contact-us-form-->
 
 	</div><!--end span8-->
-	
+
 </div><!--end row-->
 
-@endsection 
+@endsection

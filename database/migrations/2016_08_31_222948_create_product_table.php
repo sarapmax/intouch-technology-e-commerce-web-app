@@ -25,6 +25,7 @@ class CreateProductTable extends Migration
             $table->float('stock')->nullable();
             $table->enum('live', [1, 0])->default(1);
             $table->timestamps();
+            $table->string('slug')->unique();
 
             $table->foreign('category_id')->references('id')
                                           ->on('categories')

@@ -20,6 +20,12 @@ Route::group(['middleware' => ['guest']], function () {
 	//Guest
 	Route::get('/', 'HomeController@index');
 
+	Route::get('/products', 'FrontProductController@getProductsPage');
+
+	Route::get('/product/{slug}', [
+		'uses' => 'FrontProductController@getProduct',
+		'as' => 'product'
+	]);
 
 	//Admin
 	Route::get('backoffice/logout', 'AdminAuthController@getLogout');

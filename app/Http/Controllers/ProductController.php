@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Product;
 use App\Category;
 use Image;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -110,6 +111,7 @@ class ProductController extends Controller
             'shortdesc' => $request->input('shortdesc'),
             'longdesc' => $request->input('longdesc'),
             'specfications' => $request->input('specfications'), 
+            'slug' => Str::slug($request->input('name'))
         ]);
 
         return redirect()->route('backoffice.product.index')
@@ -237,6 +239,7 @@ class ProductController extends Controller
         $product->shortdesc = $request->input('shortdesc');
         $product->longdesc = $request->input('longdesc');
         $product->specfications = $request->input('specfications');
+        $product->slug = Str::slug($request->input('name'));
 
         $product->save();
         return redirect()->route('backoffice.product.index')
