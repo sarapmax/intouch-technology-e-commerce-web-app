@@ -22,14 +22,19 @@ Route::group(['middleware' => ['guest']], function () {
 
 	Route::get('/products', 'FrontProductController@getProductsPage');
 
-	Route::get('/product/{slug}', [
+	Route::get('/products/{slug}', [
 		'uses' => 'FrontProductController@getProduct',
 		'as' => 'product'
 	]);
 
+	Route::get('/category/{slug}', [
+		'uses' => 'FrontProductController@getCategory',
+		'as' => 'category'
+	]);
+
 	//Admin
 	Route::get('backoffice/logout', 'AdminAuthController@getLogout');
-	
+
 	Route::get('backoffice/login', 'AdminAuthController@getLogin');
 	Route::post('backoffice/login', 'AdminAuthController@postLogin');
 

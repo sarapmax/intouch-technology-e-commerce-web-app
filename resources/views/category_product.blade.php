@@ -103,7 +103,8 @@
 
 			<div class="row is-flex">
 				<ul class="hProductItems clearfix">
-					@foreach($products as $product)
+          @foreach($category_product as $products)
+					@foreach($products->product as $product)
 					<li class="span3 box clearfix">
 						<div class="thumbnail">
 							<a href="{{ route('product', $product->slug) }}"><img style="width:212px;height:192px;" src="{{ asset('thumb_image_thumb/'.$product->thumb_image) }}" alt=""></a>
@@ -127,41 +128,42 @@
 						</div>
 					</li>
 					@endforeach
+        @endforeach
 				</ul>
-				@if($products->lastPage() > 1)
+				@if($category_product->lastPage() > 1)
 				<div class="pagination pagination-right">
 					<?php $link_limit = 7; ?>
 
-					@if ($products->lastPage() > 1)
+					@if ($category_product->lastPage() > 1)
 					    <ul>
-					        <li class="{{ ($products->currentPage() == 1) ? ' disabled' : '' }}">
-					            <a href="{{ $products->url(1) }}">First</a>
+					        <li class="{{ ($category_product->currentPage() == 1) ? ' disabled' : '' }}">
+					            <a href="{{ $category_product->url(1) }}">First</a>
 					         </li>
-					        @for ($i = 1; $i <= $products->lastPage(); $i++)
+					        @for ($i = 1; $i <= $category_product->lastPage(); $i++)
 					            <?php
 					            $half_total_links = floor($link_limit / 2);
-					            $from = $products->currentPage() - $half_total_links;
-					            $to = $products->currentPage() + $half_total_links;
-					            if ($products->currentPage() < $half_total_links) {
-					               $to += $half_total_links - $products->currentPage();
+					            $from = $category_product->currentPage() - $half_total_links;
+					            $to = $category_product->currentPage() + $half_total_links;
+					            if ($category_product->currentPage() < $half_total_links) {
+					               $to += $half_total_links - $category_product->currentPage();
 					            }
-					            if ($products->lastPage() - $products->currentPage() < $half_total_links) {
-					                $from -= $half_total_links - ($products->lastPage() - $products->currentPage()) - 1;
+					            if ($category_product->lastPage() - $category_product->currentPage() < $half_total_links) {
+					                $from -= $half_total_links - ($category_product->lastPage() - $category_product->currentPage()) - 1;
 					            }
 					            ?>
 					            @if ($from < $i && $i < $to)
-					                <li class="{{ ($products->currentPage() == $i) ? ' active' : '' }}">
-					                    <a href="{{ $products->url($i) }}">{{ $i }}</a>
+					                <li class="{{ ($category_product->currentPage() == $i) ? ' active' : '' }}">
+					                    <a href="{{ $category_product->url($i) }}">{{ $i }}</a>
 					                </li>
 					            @endif
 					        @endfor
-					        <li class="{{ ($products->currentPage() == $products->lastPage()) ? ' disabled' : '' }}">
-					            <a href="{{ $products->url($products->lastPage()) }}">Last</a>
+					        <li class="{{ ($category_product->currentPage() == $category_product->lastPage()) ? ' disabled' : '' }}">
+					            <a href="{{ $category_product->url($products->lastPage()) }}">Last</a>
 					        </li>
 					    </ul>
 					@endif
 					<br/><br/>
-					<span>Showing {!! $products->count() !!} of {!! $products->lastpage() !!} page(s)</span>
+					<span>Showing {!! $category_product->count() !!} of {!! $category_product->lastpage() !!} page(s)</span>
 				</div><!--end pagination-->
 				@endif
 			</div><!--row-->

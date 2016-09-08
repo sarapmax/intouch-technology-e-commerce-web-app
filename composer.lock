@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "208c87aa3b737ba639ea6d7384a94391",
-    "content-hash": "a9e5be511ed84348cec887b324537dc6",
+    "hash": "69ffb92e8d0d9bf12389caec751834ce",
+    "content-hash": "4206240878cd990a157b011dbecd32e7",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -425,6 +425,51 @@
                 "tokenizer"
             ],
             "time": "2015-12-05 17:17:57"
+        },
+        {
+            "name": "kyslik/column-sortable",
+            "version": "5.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Kyslik/column-sortable.git",
+                "reference": "14c5395fa3cc32f749aab1ea951c8df43980584f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Kyslik/column-sortable/zipball/14c5395fa3cc32f749aab1ea951c8df43980584f",
+                "reference": "14c5395fa3cc32f749aab1ea951c8df43980584f",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "5.1.* || 5.2.*",
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Kyslik\\ColumnSortable\\": "src/ColumnSortable/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Martin Kiesel",
+                    "email": "martinkiesel@gmail.com"
+                }
+            ],
+            "description": "Package for handling column sorting in Laravel 5.1 and Laravel 5.2",
+            "keywords": [
+                "column",
+                "laravel",
+                "laravel5",
+                "one-to-one",
+                "sortable",
+                "sorting"
+            ],
+            "time": "2016-01-23 23:19:55"
         },
         {
             "name": "laravel/framework",

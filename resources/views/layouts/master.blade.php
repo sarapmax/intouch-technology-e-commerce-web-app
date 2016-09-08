@@ -33,7 +33,9 @@
 	{{-- <link rel="stylesheet" href="{{ asset('theme/css/color/orange.css ') }}"> --}}
 
 	<link rel="stylesheet" href="{{ asset('theme/style.css ') }}">
-	
+
+	{{-- <link rel="stylesheet" href="{{ asset('theme/css/custom.css ') }}"> --}}
+
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
@@ -145,17 +147,24 @@
 					</div><!--end pull-right-->
 
 					</div><!--end middleCoontainer-->
-
 				</div><!--end container-->
 			</div><!--end middleHeader-->
-
 			<div class="mainNav">
 				<div class="container">
 					<div class="navbar">
-					      	
+
 				      	<ul class="nav">
-				      		<li class="active"><a href="{{ url('/') }}"><i class="icon-home"></i></a></li>
-							<li><a href="{{ url('/products') }}">Products</a></li>
+				      		<li  {{ Request::segment(1) == '' ? 'class=active' : '' }}><a href="{{ url('/') }}"><i class="icon-home"></i></a></li>
+									<li {{ Request::segment(1) == 'products' || Request::segment(1) == 'product' || Request::segment(1) == 'category' ? 'class=active' : '' }}>
+										<a href="{{ url('/products') }}">Products &nbsp;<i class="icon-caret-down"></i></a>
+										<div>
+											<ul>
+												@foreach( App\Product::with('category')->groupBy('category_id')->selectRaw('category_id, count(*) as totalProduct')->get() as $category)
+												<li><a href="#"> <span>-</span> {{ $category->category->title }} ({{ $category->totalProduct }})</a></li>
+												@endforeach
+											</ul>
+										</div>
+									</li>
 				      		<li><a href="#">Promotions</a></li>
 				      		<li><a href="#">How to payment</a></li>
 				      		<li><a href="#">About US</a></li>
@@ -165,7 +174,7 @@
 					</div>
 				</div><!--end container-->
 			</div><!--end mainNav-->
-			
+
 		</header>
 		<!-- end header -->
 
@@ -189,7 +198,7 @@
 							<h3>Usefull Links</h3>
 						</div>
 
-						
+
 						<div class="usefullLinks">
 							<div class="row-fluid">
 								<div class="span6">
@@ -341,7 +350,15 @@
     <script src="{{ asset('theme/js/fancybox/jquery.fancybox.js') }}"></script>
     <!-- custom function-->
     <script src="{{ asset('theme/js/custom.js') }}"></script>
-    
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.0/jquery.matchHeight-min.js"></script>
+
+		<script>
+			$(function() {
+				$('.box').matchHeight();
+
+			});
+		</script>
+
 </body>
 
 </html>
